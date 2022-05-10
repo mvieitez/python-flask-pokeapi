@@ -1,0 +1,13 @@
+<nav class="nav-header">
+    <ul>
+        <li>
+            <a href="{{ url_for('index') }}">Lista de pokemons</a>
+        </li>
+    </ul>
+    <div class="search-conteiner">
+        <form method="GET" action="{{ url_for('search') }}">
+            <input type="text" class="input" placeholder="Nombre del pokemon" name="pokemon" value="">
+            <button type="submit" class="button">Search</button>
+        </form>
+    </div>
+</nav>

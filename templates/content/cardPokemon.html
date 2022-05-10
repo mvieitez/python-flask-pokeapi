@@ -1,0 +1,22 @@
+<div class="card-container">
+    {% for p in pokemons %}
+        <div class="card card-type type-{{p.types[0].type.name}}">
+            <div class="card-header ">
+                <img src="
+                {% if p.img == None %}
+                    {{ url_for('static', filename='img/noimage.png') }}
+                {% else %}
+                    {{p.img}}
+                {% endif %}
+                " alt="{{p.name}}" srcset="">
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">{{p.name}}</h3>
+                {% for t in p.types %}
+                <span class="type-title type-title-{{ t.type.name }}">{{ t.type.name }}</span>
+                {% endfor %}  
+            </div>
+            <a href="/pokemon/{{p.id}}" class="button-card">Info</a>
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %} {{ data.name|capitalize }} {% endblock %}
+{% block content %}
+    
+<div class="pokemon-content pokemon-type type-{{ data.types[0].type.name }}">
+    <div class="pokemon-item">
+        <img src="{{data.sprites.other.home.front_default}}" alt="">
+    </div>
+    <div class="pokemon-item">
+        <table>
+            <tr>
+                <th class="pokemon-item-title">{{ data.name }}</th>
+            </tr>
+            {% for s in data.stats %}
+                <tr>
+                    <th>{{ s.stat.name }}</th>
+                    <td>{{ s.base_stat }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <th>Type:</th>
+                <td>
+                    {% for t in data.types %}
+                        <span class="type-title type-title-{{ t.type.name }}">{{ t.type.name }}</span>
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+{% endblock %}

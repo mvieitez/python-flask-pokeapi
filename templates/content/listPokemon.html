@@ -1,0 +1,42 @@
+{% include '/content/cardPokemon.html' %} 
+
+<div class="pagination">  
+    {% if page > 1 %}
+        <form action="/page" method="post" autocomplete="off" class="pagination-form">
+            <input type="hidden" name="page" id="page" value="{{page}}">
+            <input type="hidden" value="prev" name="type">
+        <button type="button" value="Prev" name="Prev" class="pagination-button"><img src="{{ url_for('static', filename='img/prev.png') }}" alt="Prev"></button>
+        </form>
+    {% endif %}
+    <div>
+        <span>{{page}}</span><span> de </span><span>{{totalPage}}</span>
+    </div>  
+    <form action="/page" method="post" autocomplete="off" class="pagination-form">
+        <input type="hidden" name="page" id="page" value="{{page}}">
+        <input type="hidden" value="next" name="type">
+        <button type="button" value="Next" name="Next" class="pagination-button"><img src="{{ url_for('static', filename='img/next.png') }}" alt="Next"></button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('.pagination-form').on('click', function(e){
+        e.preventDefault();
+        const formData = $(this).serialize()
+        $.ajax({
+            type: "POST",
+            url: "/page",
+            data:  formData,
+            beforeSend: function(){
+                $("#cardPokemon").html("<div class='loader'><span></span></div>");
+            },
+            error: function(){
+                $("#cardPokemon").html("<p>Ocurrió un error en la búsqueda.</p>");
+            },
+            success: function(result) {
+                $('#cardPokemon').html(result);
+            }
+        });
+        });
+    });
+</script>
