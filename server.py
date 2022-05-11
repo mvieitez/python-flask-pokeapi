@@ -55,8 +55,7 @@ def search():
         json = api.allPokemons(1126,0)
         for p in json['results']:
             result.append(p['name'])
-        search = request.args.get('pokemon')
-        print(search)
+        search = request.args.get('pokemon').lower()
         for s in result:
             if s.startswith(search):
                 results.append(s)
