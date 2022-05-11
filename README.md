@@ -1,5 +1,4 @@
-# Pokedex
-### _Pokedex básica con Flask_
+# Pokedex con Python/Flask y PokeAPI
 
 ### Características
 - Lista y busca los pokemones consumiendo los datos desde [PokeApi](https://pokeapi.co). 
